@@ -1,0 +1,164 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>String Operations Web Application</title>
+    <style>
+        body {
+            font-family: Arial, sans-serif;
+            background-color: #f4f4f9;
+            text-align: center;
+            padding: 20px;
+            color: #333;
+        }
+        h1, h2, h3 {
+            color: #0066cc;
+        }
+        header {
+            background-color: #004080;
+            color: white;
+            padding: 10px;
+            border-radius: 10px;
+            margin-bottom: 20px;
+        }
+        input, button {
+            margin: 10px;
+            padding: 10px;
+            font-size: 16px;
+        }
+        button {
+            background-color: #0066cc;
+            color: white;
+            border: none;
+            border-radius: 5px;
+            cursor: pointer;
+        }
+        button:hover {
+            background-color: #004080;
+        }
+        #output {
+            margin-top: 20px;
+            font-size: 18px;
+            color: #004080;
+            font-weight: bold;
+        }
+        img {
+            width: 150px;
+            margin-bottom: 10px;
+        }
+    </style>
+</head>
+<body>
+    <header>
+        <img src="https://upload.wikimedia.org/wikipedia/en/7/79/UTAS_Oman_Logo.png" alt="University Flag">
+        <h1>University of Technology and Applied Sciences</h1>
+        <h2>Subject: Data Structures and Algorithms</h2>
+        <h3>Section 2 - Lecturer: Mr. Roby Surendran</h3>
+        <h3>Student: Ahmed Alzidi (66J1906)</h3>
+    </header>
+
+    <h2>String Operations Web Application</h2>
+    <label>Enter a string:</label>
+    <input type="text" id="inputString" placeholder="Type your string here" />
+    <br>
+    <button onclick="displayLength()">Length</button>
+    <button onclick="reverseString()">Reverse</button>
+    <button onclick="checkPalindrome()">Palindrome</button>
+    <button onclick="deleteCharacter()">Delete Character</button>
+    <button onclick="insertCharacter()">Insert Character</button>
+    <button onclick="concatenateStrings()">Concatenate Strings</button>
+    <button onclick="compareStrings()">Compare Strings</button>
+    <button onclick="searchSubstring()">Search Substring</button>
+
+    <div id="output"></div>
+
+    <script>
+        let originalString = "";
+
+        // Function to get input string
+        function getInputString() {
+            originalString = document.getElementById("inputString").value;
+            return originalString;
+        }
+
+        // Display the length of the string
+        function displayLength() {
+            let str = getInputString();
+            document.getElementById("output").innerText = "Length of the string: " + str.length;
+        }
+
+        // Reverse the string
+        function reverseString() {
+            let str = getInputString();
+            let reversed = str.split('').reverse().join('');
+            document.getElementById("output").innerText = "Reversed string: " + reversed;
+        }
+
+        // Check if the string is a palindrome
+        function checkPalindrome() {
+            let str = getInputString();
+            let reversed = str.split('').reverse().join('');
+            if (str === reversed) {
+                document.getElementById("output").innerText = "The string is a palindrome.";
+            } else {
+                document.getElementById("output").innerText = "The string is not a palindrome.";
+            }
+        }
+
+        // Delete a character at a specified position
+        function deleteCharacter() {
+            let str = getInputString();
+            let index = prompt("Enter the position to delete (0-based index):");
+            if (index >= 0 && index < str.length) {
+                let result = str.slice(0, index) + str.slice(Number(index) + 1);
+                document.getElementById("output").innerText = "After deletion: " + result;
+            } else {
+                alert("Invalid index!");
+            }
+        }
+
+        // Insert a character at a specified position
+        function insertCharacter() {
+            let str = getInputString();
+            let index = prompt("Enter position to insert character:");
+            let char = prompt("Enter the character to insert:");
+            if (index >= 0 && index <= str.length) {
+                let result = str.slice(0, index) + char + str.slice(index);
+                document.getElementById("output").innerText = "After insertion: " + result;
+            } else {
+                alert("Invalid position!");
+            }
+        }
+
+        // Concatenate two strings
+        function concatenateStrings() {
+            let str = getInputString();
+            let anotherString = prompt("Enter another string to concatenate:");
+            document.getElementById("output").innerText = "Concatenated string: " + str + anotherString;
+        }
+
+        // Compare two strings
+        function compareStrings() {
+            let str = getInputString();
+            let anotherString = prompt("Enter another string to compare:");
+            if (str === anotherString) {
+                document.getElementById("output").innerText = "The strings are the same.";
+            } else {
+                document.getElementById("output").innerText = "The strings are different.";
+            }
+        }
+
+        // Search for a substring
+        function searchSubstring() {
+            let str = getInputString();
+            let substring = prompt("Enter substring to search:");
+            if (str.includes(substring)) {
+                document.getElementById("output").innerText = `Substring '${substring}' found.`;
+            } else {
+                document.getElementById("output").innerText = `Substring '${substring}' not found.`;
+            }
+        }
+    </script>
+</body>
+</html>
